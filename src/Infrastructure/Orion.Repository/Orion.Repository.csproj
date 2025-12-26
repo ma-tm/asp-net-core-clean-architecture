@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Orion.Application\Orion.Application.csproj" />
+    <ProjectReference Include="..\..\Domain\Orion.Domain\Orion.Domain.csproj" />
   </ItemGroup>
 
 </Project>
