@@ -10,8 +10,6 @@ namespace Orion.CosmosRepository.StoryRepositories
             string key = "dgdfgd==";
             string databaseName = "OrionDb";
 
-            
-
             CosmosClient client = new CosmosClient(endPoint, key);
             StoryContainer = client.GetContainer(databaseName, "Story");
         }
