@@ -1,7 +1,6 @@
 
 using Orion.Application;
 using Orion.CosmosRepository;
-using Orion.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 

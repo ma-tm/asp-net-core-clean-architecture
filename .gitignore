@@ -1,3 +1,6 @@
+# ASP.NET Core secrets
+appsettings.json
+
 *.swp
 *.*~
 project.lock.json
