@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\Orion.Application\Orion.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Orion.CosmosRepository\Orion.CosmosRepository.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Orion.Repository\Orion.Repository.csproj" />
   </ItemGroup>
 
 </Project>

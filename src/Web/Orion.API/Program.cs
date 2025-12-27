@@ -1,10 +1,15 @@
 
 using Orion.Application;
+using Orion.CosmosRepository;
+using Orion.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplication();
+// builder.Services.AddRepository();
+builder.Services.AddCosmosRepository();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

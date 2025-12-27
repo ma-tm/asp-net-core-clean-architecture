@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Orion.Domain.StoryDomain.Entities
 {
+    [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
     public class Story
     {
+        // [JsonProperty("id")]
         public Guid Id { get; set; }
+
+        // [JsonProperty("text")]
         public string Text { get; set; }
     }
 }

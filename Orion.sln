@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.Application", "src\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.Repository", "src\Infrastructure\Orion.Repository\Orion.Repository.csproj", "{36D26CE1-BD88-4C95-A135-6C5B9EA0BA9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.CosmosRepository", "src\Infrastructure\Orion.CosmosRepository\Orion.CosmosRepository.csproj", "{B547133C-0D1E-4B32-BB32-A552EF552BE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{36D26CE1-BD88-4C95-A135-6C5B9EA0BA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36D26CE1-BD88-4C95-A135-6C5B9EA0BA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36D26CE1-BD88-4C95-A135-6C5B9EA0BA9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B547133C-0D1E-4B32-BB32-A552EF552BE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B547133C-0D1E-4B32-BB32-A552EF552BE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B547133C-0D1E-4B32-BB32-A552EF552BE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B547133C-0D1E-4B32-BB32-A552EF552BE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
