@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Orion.Application.StoryAppLayer.Gateway;
 using Orion.CosmosRepository.StoryRepositories;
 using System;
@@ -11,8 +12,12 @@ namespace Orion.CosmosRepository
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddCosmosRepository(this IServiceCollection services)
+        public static IServiceCollection AddCosmosRepository(this IServiceCollection services, IConfiguration configuration)
         {            
+            var cosmosSettings = new Settings.CosmosSettings();
+            configuration.GetSection("CosmosSettings").Bind(cosmosSettings);
+
+            services.AddSingleton(cosmosSettings);
             services.AddSingleton<IStoryCosmosContext, StoryCosmosContext>();
             services.AddScoped<IStoryRepository, StoryRepository>();
             return services;

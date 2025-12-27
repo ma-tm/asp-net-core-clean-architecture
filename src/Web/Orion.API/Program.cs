@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddApplication();
 // builder.Services.AddRepository();
-builder.Services.AddCosmosRepository();
+builder.Services.AddCosmosRepository(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

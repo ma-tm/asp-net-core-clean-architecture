@@ -1,17 +1,14 @@
 ﻿using Microsoft.Azure.Cosmos;
+using Orion.CosmosRepository.Settings;
 
 namespace Orion.CosmosRepository.StoryRepositories
 {
     public class StoryCosmosContext : IStoryCosmosContext
     {
-        public StoryCosmosContext()
-        {
-            string endPoint = "https://localhost:443/";
-            string key = "dgdfgd==";
-            string databaseName = "OrionDb";
-
-            CosmosClient client = new CosmosClient(endPoint, key);
-            StoryContainer = client.GetContainer(databaseName, "Story");
+        public StoryCosmosContext(CosmosSettings cosmosSettings)
+        {            
+            CosmosClient client = new CosmosClient(cosmosSettings.EndPoint, cosmosSettings.Key);
+            StoryContainer = client.GetContainer(cosmosSettings.DatabaseName, cosmosSettings.StoryContainer);
         }
 
         public Container StoryContainer { get; }
