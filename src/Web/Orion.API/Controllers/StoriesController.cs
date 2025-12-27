@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Orion.API.Controllers
 {
+    [Route("api/[controller]")]
     public class StoriesController : OrionBaseController
     {
         public StoriesController() { }

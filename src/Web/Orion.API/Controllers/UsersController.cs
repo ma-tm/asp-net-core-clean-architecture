@@ -7,7 +7,7 @@ using Orion.Application.AccountAppLayer.UseCases.UserUseCases.GetUserById;
 namespace Orion.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsersController : OrionBaseController
     {
         private IMediator _mediator;
