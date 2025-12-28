@@ -1,13 +1,6 @@
 ﻿using MediatR;
 using Orion.Application.StoryAppLayer.DTOs;
 using Orion.Application.StoryAppLayer.Gateway;
-using Orion.Application.StoryAppLayer.UseCases.CreateStory;
-using Orion.Application.StoryAppLayer.UseCases.UpdateStory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orion.Application.StoryAppLayer.UseCases.GetStoryById
 {
@@ -23,7 +16,11 @@ namespace Orion.Application.StoryAppLayer.UseCases.GetStoryById
         public async Task<StoryDto> Handle(GetStoryByIdQuery request, CancellationToken cancellationToken)
         {
             var story = await _storyRepository.GetByIdAsync(request.Id);
-            
+            if (story == null)
+            {
+                return null;
+            }
+
             var storyDto = new StoryDto
             {
                 Id = story.Id,

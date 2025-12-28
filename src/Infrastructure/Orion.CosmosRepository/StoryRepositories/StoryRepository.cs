@@ -35,14 +35,25 @@ namespace Orion.CosmosRepository.StoryRepositories
 
         public async Task<Story> GetByIdAsync(Guid id)
         {
-            var partitionKey = new PartitionKey(id.ToString());
-            var result = await _cosmosContext.StoryContainer.ReadItemAsync<Story>(id.ToString(), partitionKey);
-            return result.Resource;
+            try
+            {
+                var partitionKey = new PartitionKey(id.ToString());
+                var result = await _cosmosContext.StoryContainer.ReadItemAsync<Story>(id.ToString(), partitionKey);
+                return result.Resource;
+            }
+            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return null;
+            }
         }
 
         public async Task<Story> RemoveAsync(Guid id)
         {
             var recordToDelete = await GetByIdAsync(id);
+            if (recordToDelete == null)
+            {
+                return null;
+            }
             var partitionKey = new PartitionKey(id.ToString());
             var result = await _cosmosContext.StoryContainer.DeleteItemAsync<Story>(id.ToString(), partitionKey);
             return recordToDelete;
