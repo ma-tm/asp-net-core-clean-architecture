@@ -1,9 +1,21 @@
-﻿using System.Net;
+﻿using FluentValidation;
+using Orion.API.CustomMiddlewares.SeedWork.CustomProblemDetails;
+using Orion.Application.SeedWork.CustomExceptions;
+using System.Net;
 using System.Text.Json;
 
 namespace Orion.API.CustomMiddlewares
 {
     public class ProblemDetails
+    {
+        public string Title { get; set; }
+        public int Status { get; set; }
+        public string Type { get; set; }
+        public string Detail { get; set; }
+        public string Instance { get; set; }
+    }
+
+    public class ValidationProblemDetails
     {
         public string Title { get; set; }
         public int Status { get; set; }
@@ -29,16 +41,29 @@ namespace Orion.API.CustomMiddlewares
             {
                 await _next(context);
             }
+            catch(InvalidRequestException invalidRequestException)
+            {
+                var problemDetails = GetBadRequestProblemDetails(invalidRequestException);
+                var response = context.Response;
+                response.ContentType = "application/json";
+                response.StatusCode = (int)HttpStatusCode.BadRequest; // 400
+                await response.WriteAsync(JsonSerializer.Serialize(problemDetails));
+            }
             catch (Exception ex)
             {
                 context.Response.ContentType = "application/json";
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError; // 500
-
-                ProblemDetails problemDetails = GetProblemDetails(ex);
+                var problemDetails = GetProblemDetails(ex);
                 await context.Response.WriteAsync(JsonSerializer.Serialize(problemDetails));
             }
         }
 
+        private InvalidRequestProblemDetails GetBadRequestProblemDetails(InvalidRequestException exception)
+        {
+            string traceId = Guid.NewGuid().ToString();            
+            var invalidRequestProblemDetails = new InvalidRequestProblemDetails(exception, traceId);
+            return invalidRequestProblemDetails;
+        }
 
         private ProblemDetails GetProblemDetails(Exception exception)
         {
