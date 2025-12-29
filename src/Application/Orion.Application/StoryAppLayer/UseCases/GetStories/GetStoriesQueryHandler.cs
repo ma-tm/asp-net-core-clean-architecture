@@ -1,13 +1,6 @@
 ﻿using MediatR;
 using Orion.Application.StoryAppLayer.DTOs;
 using Orion.Application.StoryAppLayer.Gateway;
-using Orion.Application.StoryAppLayer.UseCases.CreateStory;
-using Orion.Application.StoryAppLayer.UseCases.UpdateStory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orion.Application.StoryAppLayer.UseCases.GetStories
 {
@@ -26,7 +19,8 @@ namespace Orion.Application.StoryAppLayer.UseCases.GetStories
             return stories.Select(s => new StoryDto
             {
                 Id = s.Id,
-                Text = s.Text
+                Text = s.Text,
+                Images = s.Images.ToArray()
             });
         }
     }

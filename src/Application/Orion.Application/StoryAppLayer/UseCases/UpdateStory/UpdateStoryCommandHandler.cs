@@ -1,13 +1,6 @@
 ﻿using MediatR;
 using Orion.Application.StoryAppLayer.DTOs;
 using Orion.Application.StoryAppLayer.Gateway;
-using Orion.Application.StoryAppLayer.UseCases.CreateStory;
-using Orion.Domain.StoryDomain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orion.Application.StoryAppLayer.UseCases.UpdateStory
 {
@@ -29,7 +22,8 @@ namespace Orion.Application.StoryAppLayer.UseCases.UpdateStory
             var storyDto = new StoryDto
             {
                 Id = updatedStory.Id,
-                Text = updatedStory.Text
+                Text = updatedStory.Text,
+                Images = updatedStory.Images
             };
             return storyDto;
         }

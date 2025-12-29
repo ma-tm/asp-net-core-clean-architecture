@@ -2,6 +2,7 @@
 using Orion.API.CustomMiddlewares;
 using Orion.Application;
 using Orion.CosmosRepository;
+using Orion.ThirdPartyServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication();
 // builder.Services.AddRepository();
 builder.Services.AddCosmosRepository(builder.Configuration);
+builder.Services.AddThirdPartyServices(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

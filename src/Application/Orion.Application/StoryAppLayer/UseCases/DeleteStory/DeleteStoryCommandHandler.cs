@@ -24,7 +24,8 @@ namespace Orion.Application.StoryAppLayer.UseCases.DeleteStory
             var storyDto = new StoryDto
             {
                 Id = deletedStory.Id,
-                Text = deletedStory.Text
+                Text = deletedStory.Text,
+                Images = deletedStory.Images
             };
             return storyDto;
         }

@@ -11,5 +11,8 @@ namespace Orion.Domain.StoryDomain.Entities
 
         // [JsonProperty("text")]
         public string Text { get; set; }
+
+        // [JsonProperty("images")]
+        public string[] Images { get; set; }
     }
 }
