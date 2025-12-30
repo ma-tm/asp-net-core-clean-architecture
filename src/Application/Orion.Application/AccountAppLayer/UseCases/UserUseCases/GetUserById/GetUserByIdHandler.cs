@@ -1,9 +1,4 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orion.Application.AccountAppLayer.UseCases.UserUseCases.GetUserById
 {
@@ -14,7 +9,7 @@ namespace Orion.Application.AccountAppLayer.UseCases.UserUseCases.GetUserById
             var user = new GetUserByIdResponse
             {
                 Id = request.Id,
-                Name = "John"
+                Name = "M.A"
             };
             return user;
         }
