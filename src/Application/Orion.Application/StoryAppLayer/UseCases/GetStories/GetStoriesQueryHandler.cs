@@ -20,7 +20,7 @@ namespace Orion.Application.StoryAppLayer.UseCases.GetStories
             {
                 Id = s.Id,
                 Text = s.Text,
-                Images = s.Images.ToArray()
+                Images = s.Images
             });
         }
     }
