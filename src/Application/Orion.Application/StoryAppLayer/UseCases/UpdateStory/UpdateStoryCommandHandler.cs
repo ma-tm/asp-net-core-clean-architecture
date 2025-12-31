@@ -14,9 +14,9 @@ namespace Orion.Application.StoryAppLayer.UseCases.UpdateStory
         }
 
         public async Task<StoryDto> Handle(UpdateStoryCommand request, CancellationToken cancellationToken)
-        {       
+        {
             var story = await _storyRepository.GetByIdAsync(request.Id);
-            story.Text = request.Text;
+            story.UpdateText(request.Text);
 
             var updatedStory = await _storyRepository.UpdateAsync(story);
             var storyDto = new StoryDto

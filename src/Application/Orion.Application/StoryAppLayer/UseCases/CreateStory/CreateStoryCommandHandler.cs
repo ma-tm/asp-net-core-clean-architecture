@@ -16,12 +16,7 @@ namespace Orion.Application.StoryAppLayer.UseCases.CreateStory
 
         public async Task<StoryDto> Handle(CreateStoryCommand request, CancellationToken cancellationToken)
         {
-            var story = new Story
-            {
-                Id = Guid.NewGuid(),
-                Text = request.Text,
-                Images = request.Images
-            };
+            var story = new Story(request.Text, request.Images);
             var newStory = await _storyRepository.AddAsync(story);
             var storyDto = new StoryDto
             {

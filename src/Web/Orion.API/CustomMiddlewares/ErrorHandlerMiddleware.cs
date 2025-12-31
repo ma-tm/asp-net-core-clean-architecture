@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Orion.API.CustomMiddlewares.SeedWork.CustomProblemDetails;
 using Orion.Application.SeedWork.CustomExceptions;
+using Orion.Domain.SeedWork;
 using System.Net;
 using System.Text.Json;
 
@@ -49,6 +50,14 @@ namespace Orion.API.CustomMiddlewares
                 response.StatusCode = (int)HttpStatusCode.BadRequest; // 400
                 await response.WriteAsync(JsonSerializer.Serialize(problemDetails));
             }
+            catch(BusinessRuleValidationException businessRuleValidationException)
+            {
+                var problemDetails = GetBusinessRuleValidationProblemDetails(businessRuleValidationException);
+                var response = context.Response;
+                response.ContentType = "application/json";
+                response.StatusCode = (int)HttpStatusCode.BadRequest; // 400
+                await response.WriteAsync(JsonSerializer.Serialize(problemDetails));
+            }
             catch (Exception ex)
             {
                 context.Response.ContentType = "application/json";
@@ -63,6 +72,13 @@ namespace Orion.API.CustomMiddlewares
             string traceId = Guid.NewGuid().ToString();            
             var invalidRequestProblemDetails = new InvalidRequestProblemDetails(exception, traceId);
             return invalidRequestProblemDetails;
+        }
+
+        private BusinessRuleValidationProblemDetails GetBusinessRuleValidationProblemDetails(BusinessRuleValidationException exception)
+        {
+            string traceId = Guid.NewGuid().ToString();
+            var businessRuleValidationProblemDetails = new BusinessRuleValidationProblemDetails(exception, traceId);
+            return businessRuleValidationProblemDetails;
         }
 
         private ProblemDetails GetProblemDetails(Exception exception)
